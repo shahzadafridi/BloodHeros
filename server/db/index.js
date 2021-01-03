@@ -56,6 +56,21 @@ const pool = mysql.createPool({
          });
      });
  }
+
+ dataDB.addUser = (requestBody) => {
+    return new Promise((resolve, reject) => {
+        pool.query('INSERT INTO user SET ?', requestBody, (err, results) => {
+            if(err){
+                return reject(err)
+            }
+            let result = {
+                "status":"success",
+                "data": "user successfully added."
+            }
+            return resolve(result)
+         });
+     });
+ }
  
  module.exports = dataDB;
 

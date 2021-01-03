@@ -13,7 +13,7 @@ router.get('/', async(req,res,next) => {
         res.send(results);
     }catch(e){
         let error = {
-            "status":404,
+            "status":"failed",
             "message":"users not found."
         }
         res.status(500).send(error);
@@ -29,7 +29,7 @@ router.get('/:id', async(req,res,next) => {
         res.send(results);
     }catch(e){
         let error = {
-            "status":404,
+            "status":"failed",
             "message":"user not found."
         }
         res.status(500).send(error);
@@ -45,8 +45,24 @@ router.post('/search', async(req,res,next) => {
         res.send(results);
     }catch(e){
         let error = {
-            "status":404,
+            "status":"failed",
             "message":"user not found."
+        }
+        res.status(500).send(error);
+    }
+});
+
+/*
+   MEHTOD: GET -> GENERIC SEARCH for USER
+*/
+router.post('/add', async(req,res,next) => {
+    try{
+        let results = await db.addUser(req.body);
+        res.send(results);
+    }catch(e){
+        let error = {
+            "status":"failed",
+            "message":"user not added."
         }
         res.status(500).send(error);
     }
