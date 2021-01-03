@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user:'root',
     password: '',
-    database: 'tournament_app'
+    database: 'bloodheros'
  });
 
  /*
@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 
  dataDB.users = () =>{
      return new Promise((resolve, reject) => {
-        pool.query('SELECT * from users', (err, results) => {
+        pool.query('SELECT * from user', (err, results) => {
             if(err){
                 return reject(err)
             }
@@ -25,6 +25,37 @@ const pool = mysql.createPool({
          });
      });
  };
+
+ dataDB.findUserById = (id) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * from user where id = ?', id, (err, results) => {
+            if(err){
+                return reject(err)
+            }
+            let result = {
+                "status":"success",
+                "data": results
+            }
+            return resolve(result)
+         });
+     });
+ }
+
+ dataDB.findUser = (column,value) => {
+    return new Promise((resolve, reject) => {
+        var searchQuery = `SELECT * from user where ${column} = '${value}'`;
+        pool.query(searchQuery, (err, results) => {
+            if(err){
+                return reject(err)
+            }
+            let result = {
+                "status":"success",
+                "data": results
+            }
+            return resolve(result)
+         });
+     });
+ }
  
  module.exports = dataDB;
 
