@@ -1,0 +1,23 @@
+
+
+
+GET http://localhost:3000/api/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWh6YWRAZ21haWwuY29tIiwiaWF0IjoxNjA5ODUwMzAxLCJleHAiOjE2MDk4NTAzNjF9.JxO6nT0GcaJMMbycT7Lv7dbNf8g0jHBppVcDvfNvBcA
+
+###
+
+POST http://localhost:3000/api/user/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWh6YWRAZ21haWwuY29tIiwiaWF0IjoxNjA5ODUwMjE4fQ.u-qVyyVOKyVdJOumqTHHTOU9AVsUJvcGCjDHFhK1QZw"
+}
+
+###
+
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+    "email": "shahzad@gmail.com"
+}
